@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@900&display=swap');
+  </style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+    </style>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Tic Tac Toe</title>
+  <script type="module" crossorigin src="/assets/index.42fe4937.js"></script>
+  <link rel="stylesheet" href="/assets/index.7fd6adb7.css">
+</head>
+
+<body>
+  <div class="bg-[url(/bg5.jpg)] bg-cover bg-center pb-4 space-y-4  h-full flex items-center flex-col justify-evenly">
+    <h2 class="h2 text-center tracking-widest">Tic Tac Toe</h2>
+    <div class="flex lg:flex-row flex-col w-full items-center justify-around">
+      <input id="player-1" placeholder="Player 1"  class="p-2 rounded-sm text-center bg-transparent border-b-2 border-gray-900 outline-none" />
+      <input id="player-2" placeholder="Player 2" class="p-2 rounded-sm text-center bg-transparent border-b-2 border-gray-900 outline-none" />
+    </div>
+   <div class="turn flex flex-col items-center">
+    <span class="info mn text-center">Turn's</span>
+    <span class="info2 mn text-center text-xl lg:text-3xl"></span>
+    <span class="info3 mn text-center text-xl lg:text-3xl"></span>
+      <div class="container">
+       <div class="box bl-0 bt-0"><span class="boxtext mn2"></span></div>
+       <div class="box bt-0"><span class="boxtext mn2"></span></div>
+       <div class="box bt-0 br-0"><span class="boxtext mn2"></span></div>
+       <div class="box bl-0"><span class="boxtext mn2"></span></div>
+       <div class="box"><span class="boxtext mn2"></span></div>
+       <div class="box br-0"><span class="boxtext mn2"></span></div>
+       <div class="box bb-0 bl-0"><span class="boxtext mn2"></span></div>
+       <div class="box bb-0"><span class="boxtext mn2"></span></div>
+       <div class="box bb-0 br-0"><span class="boxtext mn2"></span></div>
+      </div>
+    </div>
+    <button id="reset" class="lg:px-12 px-6 font-semibold text-xl shadow-md shadow-zinc-700 active:translate-y-1 active:bg-gradient-to-b py-2 rounded-lg bg-gradient-to-t from-sky-500 via-teal-400 to-emerald-300"><span>Reset</span></button>
+  </div>
+  <footer class="h-max bg-[url(/bg5.jpg)] bg-center flex lg:flex-row flex-col items-center py-2">
+    <p>Copyright &#169; 2023, All rights reserverd</p>
+    <p>Design and created by Shrey kumar</p>
+  </footer>
+	
+	<script src="./app.js"></script>
+</body>
+
+</html>
