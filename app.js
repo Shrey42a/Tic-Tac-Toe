@@ -1,33 +1,75 @@
-let highest;
-let secondHighest;
+let turn = "X";
+let gameOver = false;
 
-for(let i = 1; i > 0; i++) {
-  const numberString = prompt('next number?');
+let player_1 = document.getElementById("player-1").value;
+let player_2 = document.getElementById("player-2").value;
 
-  if(numberString === null) {
-    break;
-  }
+let turn2 = player_1;
+const changeTurn2 = ()=>{
+  return turn2 === player_1?player_2:player_1;
+}
 
-  const number = +numberString;
+let audio = new Audio("/Click2.mp3");
+audio.oncanplaythrough = function(){
+audio.play();
+}
 
-  if(numberString === '' || isNaN(number)) {
-    continue;
-  }
+let audio2 = new Audio("/Win3.mp3");
+audio2.oncanplaythrough = function(){
+  audio2.play();
+}
 
-  console.log(`user entered: ${numberString}`, `Number conversion: ${number}`);
+const changeTurn = ()=>{
+  return turn === "X"?"O":"X";
+}
 
-  
-  if(highest === undefined || number > highest) {
-    highest = number;
-  } else {
-    if(number !== highest && (secondHighest === undefined || number > secondHighest)) {
-      secondHighest = number;
+const checkWin = ()=> {
+  let boxtexts = document.getElementsByClassName('boxtext');
+  let wins =[
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ]
+  wins.forEach(e =>{
+    if((boxtexts[e[0]].innerText === boxtexts[e[1]].innerText) && (boxtexts[e[1]].innerText === boxtexts[e[2]].innerText) && (boxtexts[e[0]].innerText !== '')){
+      document.querySelector('.info2').innerText = boxtexts[e[0]].innerText +  " " + "Won"
+      gameOver = true;
+      audio2.play();
     }
-  }
+  })
 }
 
-if(secondHighest === undefined) {
-  document.write('No second highest found.');
-} else {
-  document.write(`Second Highest number is ${secondHighest}`);
-}
+let boxes = document.getElementsByClassName("box");
+Array.from(boxes).forEach(element => {
+  let boxtext = element.querySelector('.boxtext');
+  element.addEventListener('click', ()=>{
+    audio.play();
+    if(boxtext.innerText === ''){
+      boxtext.innerText = turn;
+     turn = changeTurn();
+      checkWin();
+      if(!gameOver) {
+        document.getElementsByClassName("info")[0].innerText = turn + "'s" + " " + "Turn";
+      } else if (gameOver) {
+        document.getElementsByClassName("info")[0].innerText = "Game Over";
+        turn = " ";
+      }
+    }
+  })
+})
+
+reset.addEventListener('click', ()=> {
+  let boxtext = document.querySelectorAll('.boxtext');
+  Array.from(boxtext).forEach(element => {
+    element.innerText = "";
+  });
+  turn = "X";
+  gameOver = false; 
+  document.getElementsByClassName("info")[0].innerText = turn + "'s" + " " + "Turn";
+  document.getElementsByClassName("info2")[0].innerText = " ";
+})
